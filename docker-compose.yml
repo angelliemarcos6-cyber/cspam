@@ -44,7 +44,7 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD:-password}
     volumes:
       - sail-pgsql:/var/lib/postgresql/data
-      - ./docker/pg_hba.conf:/var/lib/postgresql/data/pg_hba.conf:ro
+    #  - ./docker/pg_hba.conf:/var/lib/postgresql/data/pg_hba.conf:ro
     networks:
       - cspams-net
     healthcheck:

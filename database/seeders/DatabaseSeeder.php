@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,11 +12,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        $this->call([
+            // Add any other seeders here in the future (in correct order)
+            SchoolAndUserSeeder::class,
+            // ExampleStudentSeeder::class,          // ← add later when you create it
+            // ExampleAcademicYearSeeder::class,     // ← add later
+        ]);
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        // Optional: Keep a fallback test user if you want quick login for development
+        // You can comment this out once your real users are seeded
+        \App\Models\User::factory()->create([
+            'name'  => 'Test Developer',
+            'email' => 'dev@example.com',
+            'password' => bcrypt('password'), // or Hash::make('password')
         ]);
     }
 }
