@@ -12,18 +12,15 @@ return new class extends Migration
     {
         Schema::create('schools', function (Blueprint $table) {
             $table->id();
-            $table->string('name');           // ← almost certainly needed
-            $table->string('code')->nullable(); // optional: school code/short name
-            // Add other fields you need, examples:
-            // $table->string('address')->nullable();
-            // $table->string('contact_email')->nullable();
+            $table->string('name');
+            $table->string('code')->unique();
+            $table->string('type');
+            $table->string('address');
+            $table->boolean('is_public')->default(true);
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('schools');
